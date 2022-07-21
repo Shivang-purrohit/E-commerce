@@ -7,30 +7,33 @@ import './bootstrap.min.css';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 
-function App() {
+const App = () => {
+
   return (
-    <>
-  <Router>
+   
+    <Router>
+ 
 
   <Header/>
    <main className='py-3'>
 <Container>
-
-<Routes path='/' component={HomeScreen}  />
-
-
-<Routes path='/product' component={ProductScreen}  />
+<Routes>
+<Route path= '/' element= {<HomeScreen/>}  />
 
 
+<Route path= '/products/:id' element= {<ProductScreen/>} />
+</Routes>
+
+ 
 </Container>
   
    </main>
    
    <Footer/>
   
-  
+   
   </Router>
-  </>
+  
   );
 }
 
