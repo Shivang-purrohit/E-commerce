@@ -6,11 +6,14 @@ import products from '../products'
 import { useParams } from 'react-router-dom';
 
 const ProductScreen = ({match}) => {
+  const {id}=useParams()
   
+const product=products.filter((item)=>item._id===id)[0] 
+console.log(product)
  
   return (
     <>
-    <div>heeellloo</div>
+    <div>{product.name}</div>
     </>
   )
 }
