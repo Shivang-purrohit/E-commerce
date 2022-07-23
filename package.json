@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Shivang-purrohit/E-commerce/issues"
   },
-  "homepage": "https://github.com/Shivang-purrohit/E-commerce#readme"
+  "homepage": "https://github.com/Shivang-purrohit/E-commerce#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }
