@@ -6,8 +6,8 @@ import products from '../products'
 import axios from 'axios'
 import { useParams } from 'react-router-dom';
 
-const ProductScreen = ({match}) => {
-
+const ProductScreen = () => {
+const {id} = useParams()
  
 const [product, setProduct] = useState({})
 
@@ -16,7 +16,7 @@ const [product, setProduct] = useState({})
 
    
    const fetchProduct = async () => {
-   const { data } = await axios.get(`/api/products/${match.params.id}`)
+   const { data } = await axios.get(`/api/products/${id}`)
  
    setProduct(data)
  
