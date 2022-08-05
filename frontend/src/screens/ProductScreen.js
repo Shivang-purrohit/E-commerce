@@ -7,14 +7,17 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { listProductDetails } from '../actions/productActions';
 import { useParams } from 'react-router-dom';
-import { withRouter } from "react-router";
+import { useNavigate } from 'react-router-dom';
 
 
 
-const ProductScreen = ({ histroy, match }) => {
+
+
+const ProductScreen = ({ history, match }) => {
   const {id} = useParams()
+  const navi =  useNavigate()
 
-  const [qty, setQty] = useState(0)
+  const [qty, setQty] = useState()
 
   const dispatch = useDispatch()
 
@@ -28,9 +31,8 @@ dispatch(listProductDetails(id))
   }, [dispatch, match] )
 
   
-const addToCartHandler = () => {
-histroy.push.withRouter(`/cart/${id}?qty=${qty}`)
-}
+const addToCartHandler = () => { navi(`/cart/${id}?qty=${qty}`) }
+
  
   return (
     <>
@@ -101,7 +103,7 @@ histroy.push.withRouter(`/cart/${id}?qty=${qty}`)
 
       <ListGroup.Item>
         <Button
-        onClick={ addToCartHandler }
+        onClick = { addToCartHandler }
         
         className='btn-block' type='button' disabled={product.countInStock === 0 } >
           Add to Cart
@@ -118,4 +120,4 @@ histroy.push.withRouter(`/cart/${id}?qty=${qty}`)
   )
 }
 
-export default ProductScreen
+export default  ProductScreen
