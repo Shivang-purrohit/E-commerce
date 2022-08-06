@@ -17,7 +17,7 @@ const ProductScreen = ({ history, match }) => {
   const {id} = useParams()
   const navi =  useNavigate()
 
-  const [qty, setQty] = useState()
+  const [qty, setQty] = useState(1)
 
   const dispatch = useDispatch()
 
