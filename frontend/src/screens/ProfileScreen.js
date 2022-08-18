@@ -10,7 +10,7 @@ import { login } from '../actions/userActions'
 import { useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 
-import { getUserDetails } from '../actions/userActions'
+import { getUserDetails, updateUserProfile } from '../actions/userActions'
 
 
 
@@ -23,7 +23,7 @@ const ProfileScreen = () => {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [message, setMessage] = useState(null)
 
-
+    const navi = useNavigate()
     const dispatch = useDispatch()
 
     const userDetails = useSelector((state) => state.userDetails)
@@ -32,7 +32,10 @@ const ProfileScreen = () => {
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
 
-    const navi = useNavigate()
+    const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
+    const { success } = userUpdateProfile
+
+    
     
     
     useEffect(() => {
@@ -48,7 +51,7 @@ const ProfileScreen = () => {
             // error here TypeError: Cannot read properties of undefined (reading 'name')
            }
         }
-    }, [dispatch, userInfo, user ])
+    }, [dispatch, userInfo, user])
           
     
 
@@ -58,8 +61,9 @@ const ProfileScreen = () => {
         if(password !== confirmPassword) {
             setMessage('Passwords do not match')
         } else {
-            
-     // DISPATCH
+             
+          dispatch(updateUserProfile({ id: user._id, name, email, password }))
+
         }
 
     }
@@ -70,6 +74,7 @@ const ProfileScreen = () => {
     <h1>User Profile</h1>
     {message && <Message variant='danger'>{message}</Message> }
     {error && <Message variant='danger'>{error}</Message> }
+    {success && <Message variant='success'>Profile Updated</Message> }
     {loading && <Loader />}
     <Form onSubmit={ submitHandler }>
 

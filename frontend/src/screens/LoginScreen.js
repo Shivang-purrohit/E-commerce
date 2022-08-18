@@ -33,12 +33,14 @@ const LoginScreen = () => {
 
     useEffect(() => {
         if(userInfo) {
-        navi('/') 
+        navi( redirect ? `/?redirect=${redirect}` : '/') 
            // problem :  i'm not using redirect, if i use redirect then it does not redirect to '/'
-        }
-    }, [userInfo])
+  
+          }
+
+    }, [userInfo, redirect])
           
-    
+  
 
     const submitHandler = (e) => {
         e.preventDefault()

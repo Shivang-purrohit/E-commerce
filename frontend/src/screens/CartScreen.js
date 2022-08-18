@@ -8,6 +8,8 @@ import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom'
 import { useSearchParams } from 'react-router-dom'
+import ShippingScreen from './ShippingScreen'
+import { login } from '../actions/userActions'
 
 
 
@@ -28,6 +30,7 @@ const dispatch = useDispatch()
 
 const cart = useSelector((state) => state.cart)
 const { cartItems } = cart 
+ 
 
 
 
@@ -44,6 +47,8 @@ const removeFromCartHandler = (id) => {
 
 const checkoutHandler = () => {
   navi(`/login?redirect=shipping`)
+  
+  // ERROR : not redirecting to shipping
 }
 
 
