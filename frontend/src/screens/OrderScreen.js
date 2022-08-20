@@ -196,8 +196,29 @@ const successPaymentHandler = (paymentResult) => {
         <ListGroupItem>
             {loadingPay && <Loader />}
             {!sdkReady ? <Loader /> : (
-                <PayPalScriptProvider>
-                <PayPalButtons amount={order.totalPrice} onSuccess={ successPaymentHandler }  /> </PayPalScriptProvider>
+                <PayPalScriptProvider >
+        
+                <PayPalButtons 
+                createOrder={(data, action) => {
+                    return action.order.create({
+                        purchase_units: 
+                           [{
+                            amount: {
+                                value: order.totalPrice
+                            }
+                           }]
+                        
+                    })
+                }
+                
+                
+                }
+                
+                
+                
+                
+                
+                amount={order.totalPrice}    onSuccess={ successPaymentHandler }  /> </PayPalScriptProvider>
             ) }
         </ListGroupItem>
       )}
