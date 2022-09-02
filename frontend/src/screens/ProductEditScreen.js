@@ -8,8 +8,9 @@ import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer' 
 import { useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
-import { listProductDetails } from '../actions/productActions'
+import { listProductDetails, updateProduct } from '../actions/productActions'
 import { useParams } from 'react-router-dom'
+import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
 
 
 
@@ -35,32 +36,53 @@ const ProductEditScreen = () => {
     const productDetails = useSelector(state => state.productDetails)
     const { loading, error, product } = productDetails
 
+    const productUpdate = useSelector(state => state.productUpdate)
+    const { loading:loadingUpdate, error:errorUpdate, success:successUpdate } = productUpdate
+
     const location = useLocation()
     const navi = useNavigate()
     
     
 
     useEffect(() => {
-        
+      if(successUpdate){
+        dispatch({ type: PRODUCT_UPDATE_RESET })
+        navi('/admin/productlist')
+      } else {
+
         if(!product.name || product._id !== id) {
-            dispatch(listProductDetails(id))
-        } else {
-            setName(product.name)
-            setPrice(product.price)
+          dispatch(listProductDetails(id))
+      } else {
+          setName(product.name)
+          setPrice(product.price)
           setImage(product.image)
           setCategory(product.category)
           setDescription(product.description)
-          setCountInStock(product.countInStock)
-          setBrand(product.brand)
-        }
+         setCountInStock(product.countInStock)
+         setBrand(product.brand)
+      }
+
+
+
+      }
+       
       
-    }, [ dispatch ,product ])
+    }, [ dispatch , product, successUpdate ])
           
     
 
     const submitHandler = (e) => {
         e.preventDefault()
-// update
+        dispatch(updateProduct({
+          _id: id,
+          name,
+          price,
+          image,
+          brand,
+          category,
+          description,
+          countInStock,
+        }))
       
         }
 
@@ -75,6 +97,9 @@ const ProductEditScreen = () => {
   <FormContainer>
 
     <h1>Edit Product</h1>
+
+    {loadingUpdate && <Loader/>}
+    {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
    
    {loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message> : (
 
