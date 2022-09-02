@@ -1,0 +1,179 @@
+import React from 'react'
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { Form, Button,  FormGroup, FormLabel, FormControl, FormCheck  } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import Message from '../components/Message'
+import Loader from '../components/Loader'
+import FormContainer from '../components/FormContainer' 
+import { useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { listProductDetails } from '../actions/productActions'
+import { useParams } from 'react-router-dom'
+
+
+
+
+
+const ProductEditScreen = () => {
+
+    const {id} = useParams()
+
+    const [name, setName] = useState('')
+    const [price, setPrice] = useState(0)
+    const [image, setImage] = useState('')
+    const [brand, setBrand] = useState('')
+    const [category, setCategory] = useState('')
+    const [description, setDescription] = useState('')
+    const [countInStock, setCountInStock] = useState(0)
+    
+   
+
+
+    const dispatch = useDispatch()
+
+    const productDetails = useSelector(state => state.productDetails)
+    const { loading, error, product } = productDetails
+
+    const location = useLocation()
+    const navi = useNavigate()
+    
+    
+
+    useEffect(() => {
+        
+        if(!product.name || product._id !== id) {
+            dispatch(listProductDetails(id))
+        } else {
+            setName(product.name)
+            setPrice(product.price)
+          setImage(product.image)
+          setCategory(product.category)
+          setDescription(product.description)
+          setCountInStock(product.countInStock)
+          setBrand(product.brand)
+        }
+      
+    }, [ dispatch ,product ])
+          
+    
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+// update
+      
+        }
+
+    
+
+  return ( 
+  <>
+  <Link to='/admin/productlist' className='btn btn-light my-3'>
+    Go Back
+  </Link>
+  
+  <FormContainer>
+
+    <h1>Edit Product</h1>
+   
+   {loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message> : (
+
+<Form onSubmit={ submitHandler }>
+
+<FormGroup controlId='name'>
+        <FormLabel>Name </FormLabel>
+        <FormControl
+         type='name'
+         placeholder='Enter Name'
+         value={name}
+         onChange={(e) => setName(e.target.value)}></FormControl>
+
+    </FormGroup>
+
+
+    <FormGroup controlId='price'>
+        <FormLabel>Price</FormLabel>
+        <FormControl
+         type='number'
+         placeholder='Enter Price'
+         value={price}
+         onChange={(e) => setPrice(e.target.value)}></FormControl>
+
+    </FormGroup>
+      
+    <FormGroup controlId='image'>
+      
+    <FormLabel>Image</FormLabel>
+        <FormControl
+         type='text'
+         placeholder='Enter image url'
+         value={image}
+         onChange={(e) => setImage(e.target.value)}></FormControl>
+
+ </FormGroup>
+
+ <FormGroup controlId='brand'>
+     
+ <FormLabel>Brand</FormLabel>
+        <FormControl
+         type='text'
+         placeholder='Enter Brand '
+         value={brand}
+         onChange={(e) => setBrand(e.target.value)}></FormControl>
+
+ </FormGroup>
+
+ <FormGroup controlId='countInStock'>
+     
+ <FormLabel>Count In Stock</FormLabel>
+        <FormControl
+         type='number'
+         placeholder='Enter CountInStock '
+         value={countInStock}
+         onChange={(e) => setCountInStock(e.target.value)}></FormControl>
+
+ </FormGroup>
+
+ <FormGroup controlId='category'>
+     
+ <FormLabel>Category</FormLabel>
+        <FormControl
+         type='text'
+         placeholder='Enter Category '
+         value={category}
+         onChange={(e) => setCategory(e.target.value)}></FormControl>
+
+ </FormGroup>
+
+ <FormGroup controlId='description'>
+     
+ <FormLabel>Description</FormLabel>
+        <FormControl
+         type='text'
+         placeholder='Enter Description '
+         value={description}
+         onChange={(e) => setDescription(e.target.value)}></FormControl>
+
+ </FormGroup>
+
+ 
+
+    
+    <Button type='submit' variant='primary'>
+       Update
+    </Button>
+ 
+  </Form>
+
+
+
+   )  }
+   
+  </FormContainer>
+      
+  </>
+ 
+  )
+}
+
+export default  ProductEditScreen
