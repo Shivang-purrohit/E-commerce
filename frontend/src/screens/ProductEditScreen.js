@@ -2,7 +2,7 @@ import axios from 'axios'
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Form, Button,  FormGroup, FormLabel, FormControl, FormSelect, FormText } from 'react-bootstrap'
+import { Form, Button,  FormGroup, FormLabel, FormControl,  FormText } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -14,7 +14,7 @@ import { useParams } from 'react-router-dom'
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
 
 
-
+// Error
 
 
 const ProductEditScreen = () => {
@@ -52,7 +52,7 @@ const ProductEditScreen = () => {
         navi('/admin/productlist')
       } else {
 
-        if(!product?.name || product._id !== id) {
+        if(!product.name || product._id !== id) {
           dispatch(listProductDetails(id))
       } else {
           setName(product.name)
@@ -162,11 +162,11 @@ const ProductEditScreen = () => {
        
  </FormGroup>
  <FormGroup>
- <Form.Control type="file" 
+ <FormControl type="file" 
         
          label='choose File'
-         custom
-         onChange={uploadFileHandler}></Form.Control>
+         custom= 'true'
+         onChange={uploadFileHandler}></FormControl>
 
          {uploading && <Loader /> } 
  </FormGroup>
