@@ -31,6 +31,7 @@ const dispatch = useDispatch()
 const cart = useSelector((state) => state.cart)
 const { cartItems } = cart 
  
+const userLogin = useSelector( state => state.userLogin);
 
 
 
@@ -46,7 +47,11 @@ const removeFromCartHandler = (id) => {
 }
 
 const checkoutHandler = () => {
-  navi(`/login?redirect=shipping`)
+  if(userLogin){
+    navi('/shipping');
+  } else {
+    navi('/login')
+  }
   
   // ERROR : not redirecting to shipping
 }

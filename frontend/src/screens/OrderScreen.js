@@ -81,7 +81,7 @@ const [sdkReady, setSdkReady] = useState(false)
    },[dispatch, id, successPay, successDeliver ,order])
 
 const successPaymentHandler = (paymentResult) => {
-    console.log(paymentResult)
+    console.log(paymentResult, id)
     dispatch(payOrder( id, paymentResult))
 
 }
@@ -233,7 +233,7 @@ const deliverHandler = () => {
                 
                 
                 
-                amount={order.totalPrice}    onSuccess={ successPaymentHandler }  /> </PayPalScriptProvider>
+                amount={order.totalPrice}    onApprove={successPaymentHandler}  /> </PayPalScriptProvider>
             ) }
            
              {loadingDeliver && <Loader />}

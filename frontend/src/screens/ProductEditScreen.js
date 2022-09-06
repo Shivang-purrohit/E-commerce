@@ -155,7 +155,7 @@ const ProductEditScreen = () => {
          type='text'
          placeholder='Enter image url'
          value={image}
-         onChange={(e) => setImage(e.target.value)}>   </FormControl>
+         onChange={(e) => setImage(e.target.value)}></FormControl>
         
       
         
