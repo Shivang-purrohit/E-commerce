@@ -48,8 +48,8 @@ const App = () => {
 <Route path= '/cart/:id' element= {<CartScreen/>} />
 <Route path= '/admin/userList' element= {<UserListScreen/>} />
 <Route path= '/admin/user/:id/edit' element= {<UserEditScreen/>} />
-
-<Route path= '/' element= {<HomeScreen/>}  />
+<Route path= '/search/:keyword' element= {<HomeScreen/>}  />
+<Route path= '/' element= {<HomeScreen/>} />
 
 
 
