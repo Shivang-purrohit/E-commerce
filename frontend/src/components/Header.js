@@ -5,7 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import {Navbar, Nav, Container, Form, NavDropdown} from 'react-bootstrap';
 import { logout } from '../actions/userActions';
 import SearchBox from './SearchBox';
-
+// search box not working
 
 const Header = () => {
   const dispatch = useDispatch()
