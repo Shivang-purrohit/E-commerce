@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Helmet } from 'react-helmet'
 import { Row, Col } from 'react-bootstrap';
 import Product from '../components/Product';
 import Message from '../components/Message';
@@ -7,6 +8,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { listProducts } from '../actions/productActions';
 import { useParams } from 'react-router-dom';
 import Paginate from '../components/Paginate';
+import ProductCarousel from '../components/ProductCarousel';
+import Meta from '../components/Meta';
+import { Link } from 'react-router-dom'
+
 
 const HomeScreen = () => {
 const param = useParams()
@@ -27,9 +32,17 @@ const pageNumber = param.pageNumber || 1
  }, [dispatch, keyword, pageNumber] )
 
  
-
+// if no keyword show carousel {!keyword ? (<ProductCarousel /> ) : (
+     // <Link to='/' className='btn btn-light'>
+      //Go Back
+    //</Link>
+  
   return (
     <>
+   <Meta />
+    
+    <ProductCarousel />
+    
     <h1>Lastest Products</h1>
     { loading ? <Loader/> : error ?  <Message variant='danger'>{error}</Message> : 
     <>

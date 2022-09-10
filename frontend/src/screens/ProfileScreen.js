@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { LinkContainer } from 'react-router-bootstrap'
+import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
  
 import { login } from '../actions/userActions'
 import { useLocation } from 'react-router-dom'
@@ -47,7 +48,8 @@ const ProfileScreen = () => {
         navi('/login')  
         }
         else{
-           if (!user.name) {
+           if (!user || !user?.name || success) {
+            dispatch({type: USER_UPDATE_PROFILE_RESET})
             dispatch(getUserDetails('profile'))
             dispatch(listMyOrders())
            } else {
@@ -56,7 +58,7 @@ const ProfileScreen = () => {
             // error here TypeError: Cannot read properties of undefined (reading 'name')
            }
         }
-    }, [dispatch, userInfo, user])
+    }, [dispatch, userInfo, user, success])
           
     
 

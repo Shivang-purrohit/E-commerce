@@ -9,6 +9,7 @@ import { listProductDetails, createProductReview } from '../actions/productActio
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Meta from '../components/Meta';
 
 
 
@@ -63,6 +64,7 @@ const submitHandler = (e) => {
    <Link className='btn btn-dark my-3' to='/'>Go back</Link>
    { loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message> : (
 <>
+<Meta title={product.name} />
 <Row>
 <Col md={6}>
   <Image src={product.image} alt={product.name} fluid />
