@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom'
 
 const HomeScreen = () => {
 const param = useParams()
-const keyword = param
+const keyword = param.keyword
 const pageNumber = param.pageNumber || 1
 
   const dispatch = useDispatch()
@@ -31,18 +31,17 @@ const pageNumber = param.pageNumber || 1
 
  }, [dispatch, keyword, pageNumber] )
 
- 
-// if no keyword show carousel {!keyword ? (<ProductCarousel /> ) : (
-     // <Link to='/' className='btn btn-light'>
-      //Go Back
-    //</Link>
+
   
   return (
     <>
    <Meta />
+   {!keyword ? (<ProductCarousel /> ) : (
+      <Link to='/' className='btn btn-light'>
+      Go Back
+    </Link> )}
     
-    <ProductCarousel />
-    
+  
     <h1>Lastest Products</h1>
     { loading ? <Loader/> : error ?  <Message variant='danger'>{error}</Message> : 
     <>
