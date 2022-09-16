@@ -33,8 +33,8 @@ const LoginScreen = () => {
 
     useEffect(() => {
         if(userInfo) {
-        navi( redirect ? `/?redirect=${redirect}` : '/') 
-           // problem :  i'm not using redirect, if i use redirect then it does not redirect to '/'
+        navi('/') 
+           // problem :  redirect ? `/?redirect=${redirect}` : '/'       i'm not using redirect, if i use redirect then it does not redirect to '/'
   
           }
 

@@ -9,6 +9,7 @@ const SearchBox = () => {
 
  const submitHandler = (e) => {
     e.preventDefault()
+    console.log('hello')
     if(keyword.trim()) {
         navi(`/search/${keyword}`)
     } else {
@@ -20,8 +21,8 @@ const SearchBox = () => {
     <Form onSubmit={submitHandler} inline='true'>    
       <FormControl type='text' name='q' onChange={(e) => setKeyword(e.target.value)}
       placeholder='Search Products..'
-      className='mr-sm-2 ml-sm-5'></FormControl>
-      <Button type='submit' variant='outline-success' className='p-2'>Search</Button>
+      className='mr-sm-2 ml-sm-3 box'></FormControl>
+      <Button type='submit' variant='outline-success'  className='p-1'>Search</Button>
     </Form>
   )
 }

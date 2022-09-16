@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {   PayPalScriptProvider,
     PayPalButtons,
-    usePayPalScriptReducer } from '@paypal/react-paypal-js'
+    } from '@paypal/react-paypal-js'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Form, Image , Card,  Button, Row, Col, FormGroup, FormLabel, FormControl, ListGroup, ListGroupItem  } from 'react-bootstrap'
@@ -78,11 +78,12 @@ const [sdkReady, setSdkReady] = useState(false)
     }
    }
  
-   },[dispatch, id, successPay, successDeliver ,order])
+   },[dispatch, id, successPay, successDeliver ,order ])
 
 const successPaymentHandler = (paymentResult) => {
-    console.log(paymentResult)
-    dispatch(payOrder( id, paymentResult))
+    console.log("hello", paymentResult)
+   
+    dispatch(payOrder( id , paymentResult))
 
 }
 
@@ -229,11 +230,11 @@ const deliverHandler = () => {
                 
                 }
                 
-                
-                
-                
-                
-                amount={order.totalPrice}    onSuccess={ successPaymentHandler }  /> </PayPalScriptProvider>
+                 onApprove = {
+                     successPaymentHandler
+                 }
+                    
+             /> </PayPalScriptProvider>
             ) }
            
              {loadingDeliver && <Loader />}

@@ -25,6 +25,9 @@ const productId = id
 
 const qty = location.search ? Number(location.search.split( '=' )[1]) : 1
 
+const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
+
 const dispatch = useDispatch()
 
 
@@ -46,7 +49,12 @@ const removeFromCartHandler = (id) => {
 }
 
 const checkoutHandler = () => {
-  navi(`/login?redirect=shipping`)
+  if(userInfo) {
+  navi('/shipping')
+  } else 
+  {
+    navi('/login')
+  }
   
   // ERROR : not redirecting to shipping
 }

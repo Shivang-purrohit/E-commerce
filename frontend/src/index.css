@@ -39,9 +39,25 @@ h2{
   height: 300px;
   padding: 30px;
   margin: 40px;
+  position: relative;
+  left: 21.2rem;
+  top: 2rem;
   border-radius: 50%;
+
+ 
 }
 
 .carousel a {
  margin: 0 auto;
+}
+
+.p-1{
+  position: relative;
+  left: 17rem ;
+ bottom: 1.6rem; 
+}
+
+.box{
+  position: relative;
+  top: 1rem;
 }
