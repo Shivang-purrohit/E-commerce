@@ -12,6 +12,7 @@ import { getOrderDetails, payOrder, deliverOrder } from '../actions/orderActions
 import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../constants/orderConstants'
+import { BASE_URL } from '../utils'
 
  // Not refreshing on PAID
 
@@ -54,7 +55,7 @@ const [sdkReady, setSdkReady] = useState(false)
     }
 
     const addPayPalScript = async () => {
-        const { data: clientId } = await axios.get('/api/config/paypal')
+        const { data: clientId } = await axios.get(`${BASE_URL}/api/config/paypal`)
         const script = document.createElement('script')
         script.type = 'text/javascript'
         script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
