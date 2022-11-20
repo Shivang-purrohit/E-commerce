@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { listProductDetails, updateProduct } from '../actions/productActions'
 import { useParams } from 'react-router-dom'
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
+import { BASE_URL } from '../utils'
 
 
 // Error
@@ -82,7 +83,7 @@ const ProductEditScreen = () => {
             'Content-Type': 'multipart/form-data' 
           }
         }
-        const { data } = await axios.post('/api/upload', formData, config)
+        const { data } = await axios.post(`${BASE_URL}/api/upload`, formData, config)
         setImage(data)
         setUploading(false)
       } catch (error) {
