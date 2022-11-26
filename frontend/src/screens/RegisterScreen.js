@@ -33,6 +33,7 @@ const RegisterScreen = () => {
     const navi = useNavigate()
     
     
+    
 
     const redirect =  location.search ? location.search.split('=') [1] : '/'
 
@@ -106,15 +107,18 @@ const RegisterScreen = () => {
 
         </FormGroup>
 
-        <Button type='submit' variant='primary'>
-            Register
+       
+    
+        <Button type='submit' variant='primary' >
+           Register
         </Button>
+        
      
       </Form>
 
       <Row className='py-3'>
         <Col> 
-       Havw an Account ? <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}> 
+       Have an Account ? <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}> 
            Login</Link>
         </Col>
       </Row>
